@@ -1,4 +1,4 @@
-# jklib
+# libjk
 
 > The jk C library
 

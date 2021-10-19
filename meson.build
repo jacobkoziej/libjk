@@ -15,7 +15,7 @@
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 project(
-        'jklib',
+        'libjk',
         'c',
         version : '0.0.0',
         license : 'GPL-3.0-or-later',
