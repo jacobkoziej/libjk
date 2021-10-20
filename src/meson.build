@@ -14,20 +14,13 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-project(
-        'libjk',
-        'c',
-        version : '0.0.0',
-        license : 'GPL-3.0-or-later',
-        default_options : [
-                # core options
-                'warning_level=3',
-                'werror=true',
-                # compiler options
-                'c_std=c18',
-        ],
+libjk_sources = files(
+        'sll.c',
 )
 
 
-subdir('include')
-subdir('src')
+library(
+        'libjk',
+        include_directories : libjk_incdir,
+        sources : libjk_sources,
+)
