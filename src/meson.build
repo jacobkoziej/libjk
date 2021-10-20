@@ -20,7 +20,7 @@ libjk_sources = files(
 
 
 library(
-        'libjk',
+        'jk',
         include_directories : libjk_incdir,
         sources : libjk_sources,
 )
