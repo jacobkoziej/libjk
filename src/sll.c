@@ -18,3 +18,16 @@
 
 #include <jk/sll.h>
 #include "sll.h"
+
+#include <stddef.h>
+#include <stdlib.h>
+
+
+jk_sll_t *jk_sll_init(void)
+{
+	jk_sll_t *tmp = calloc(1, sizeof(jk_sll_t));
+	if (!tmp) return NULL;
+
+
+	return tmp;
+}

@@ -27,6 +27,9 @@ extern "C" {
 typedef struct jk_sll_s jk_sll_t;
 
 
+jk_sll_t *jk_sll_init(void);
+
+
 #ifdef __cplusplus
 }
 #endif
