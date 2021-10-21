@@ -15,13 +15,14 @@
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 if not get_option('unit_tests').disabled() and cmocka_dep.found()
-        libjk_tests = [
-        ]
+        libjk_tests = {
+        }
 
-        foreach test_name : libjk_tests
+        foreach test_name, test_args : libjk_tests
                 test_exe = executable(
                         test_name,
                         include_directories : libjk_incdir,
+                        link_args : test_args.get('link_args', []),
                         sources : [
                                 libjk_sources,
                                 test_name + '.c',
