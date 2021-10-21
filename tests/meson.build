@@ -14,27 +14,20 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-project(
-        'libjk',
-        'c',
-        version : '0.0.0',
-        license : 'GPL-3.0-or-later',
-        default_options : [
-                # core options
-                'warning_level=3',
-                'werror=true',
-                # compiler options
-                'c_std=c18',
-        ],
-)
+if not get_option('unit_tests').disabled() and cmocka_dep.found()
+        libjk_tests = [
+        ]
 
+        foreach test_name : libjk_tests
+                test_exe = executable(
+                        test_name,
+                        include_directories : libjk_incdir,
+                        sources : [
+                                libjk_sources,
+                                test_name + '.c',
+                        ],
+                )
 
-cmocka_dep = dependency(
-        'cmocka',
-        required : get_option('unit_tests'),
-)
-
-
-subdir('include')
-subdir('src')
-subdir('tests')
+                test(test_name, test_exe)
+        endforeach
+endif
