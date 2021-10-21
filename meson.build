@@ -29,5 +29,11 @@ project(
 )
 
 
+cmocka_dep = dependency(
+        'cmocka',
+        required : get_option('unit_tests'),
+)
+
+
 subdir('include')
 subdir('src')
