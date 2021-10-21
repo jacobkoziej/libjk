@@ -21,6 +21,7 @@ if not get_option('unit_tests').disabled() and cmocka_dep.found()
         foreach test_name, test_args : libjk_tests
                 test_exe = executable(
                         test_name,
+                        dependencies : cmocka_dep,
                         include_directories : libjk_incdir,
                         link_args : test_args.get('link_args', []),
                         sources : [
