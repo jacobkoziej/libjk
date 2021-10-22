@@ -18,6 +18,7 @@ if not get_option('unit_tests').disabled() and cmocka_dep.found()
         libjk_tests = {
         }
         test_sources = [
+                'wrap_calloc.c',
                 'wrap_free.c',
         ]
 
