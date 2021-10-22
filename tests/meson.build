@@ -20,6 +20,7 @@ if not get_option('unit_tests').disabled() and cmocka_dep.found()
         test_sources = [
                 'wrap_calloc.c',
                 'wrap_free.c',
+                'wrap_malloc.c',
         ]
 
         foreach test_name, test_args : libjk_tests
