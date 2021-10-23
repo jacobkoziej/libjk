@@ -16,6 +16,11 @@
 
 if not get_option('unit_tests').disabled() and cmocka_dep.found()
         libjk_tests = {
+                'test_sll' : {
+                        'link_args' : [
+                                '-Wl,-wrap=calloc',
+                        ],
+                },
         }
         test_sources = [
                 'wrap_calloc.c',
