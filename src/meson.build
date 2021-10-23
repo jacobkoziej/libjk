@@ -15,6 +15,7 @@
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 libjk_sources = files(
+        'sll/append.c',
         'sll/init.c',
 )
 

@@ -1,5 +1,5 @@
 /*
- * sll.h -- singly-linked list (private)
+ * sll/append.c
  * Copyright (C) 2021  Jacob Koziej <jacobkoziej@gmail.com>
  *
  * This program is free software: you can redistribute it and/or modify
@@ -16,28 +16,41 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-#ifndef LIBJK_PRIVATE_SLL_H_
-#define LIBJK_PRIVATE_SLL_H_
+#include <jk/sll.h>
+#include "sll.h"
 
-#ifdef __cplusplus
-extern "C" {
-#endif
-
-
-typedef struct jk_sll_node_s {
-	void *data;
-	struct jk_sll_node_s *next;
-} jk_sll_node_t;
-
-typedef struct jk_sll_s {
-	jk_sll_node_t *head;
-	jk_sll_node_t *tail;
-	int nodes;
-} jk_sll_t;
+#include <errno.h>
+#include <stddef.h>
+#include <stdlib.h>
 
 
-#ifdef __cplusplus
+int jk_sll_append(jk_sll_t *list, void *data)
+{
+	if (!list || !data) {
+		errno = EINVAL;
+		return -1;
+	}
+
+
+	jk_sll_node_t *n = malloc(sizeof(jk_sll_node_t));
+	if (!n) return -1;
+
+
+	n->data = data;
+
+	if (!list->head) {
+		n->next = NULL;
+
+		list->head = n;
+		list->tail = n;
+
+
+		return ++list->nodes;
+	}
+
+	n->next = list->head;
+	list->head = n;
+
+
+	return ++list->nodes;
 }
-#endif
-
-#endif /* LIBJK_PRIVATE_SLL_H_ */

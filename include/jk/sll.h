@@ -27,6 +27,7 @@ extern "C" {
 typedef struct jk_sll_s jk_sll_t;
 
 
+int       jk_sll_append(jk_sll_t *list, void *data);
 jk_sll_t *jk_sll_init(void);
 
 
