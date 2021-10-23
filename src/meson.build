@@ -16,6 +16,7 @@
 
 libjk_sources = files(
         'sll/append.c',
+        'sll/free.c',
         'sll/init.c',
 )
 
