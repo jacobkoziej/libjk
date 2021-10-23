@@ -14,31 +14,39 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
+libjk_tests = {
+        'sll/init' : {
+                'link_args' : [
+                        '-Wl,-wrap=calloc',
+                ],
+        },
+}
+
+wrap_sources = [
+        'wrap_calloc.c',
+        'wrap_free.c',
+        'wrap_malloc.c',
+        'wrap_realloc.c',
+]
+
+libjk_tests_incdir = include_directories('.')
+
+
 if not get_option('unit_tests').disabled() and cmocka_dep.found()
-        libjk_tests = {
-                'test_sll' : {
-                        'link_args' : [
-                                '-Wl,-wrap=calloc',
-                        ],
-                },
-        }
-        test_sources = [
-                'wrap_calloc.c',
-                'wrap_free.c',
-                'wrap_malloc.c',
-                'wrap_realloc.c',
-        ]
 
         foreach test_name, test_args : libjk_tests
                 test_exe = executable(
-                        test_name,
+                        'test_' + test_name.underscorify(),
                         dependencies : cmocka_dep,
-                        include_directories : libjk_incdir,
+                        include_directories : [
+                                libjk_incdir,
+                                libjk_tests_incdir,
+                        ],
                         link_args : test_args.get('link_args', []),
                         sources : [
                                 libjk_sources,
                                 test_name + '.c',
-                                test_sources,
+                                wrap_sources,
                         ],
                 )
 

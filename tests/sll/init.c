@@ -1,5 +1,5 @@
 /*
- * test_sll.c -- singly-linked list (test)
+ * sll/init.c -- jk_sll_init() tests
  * Copyright (C) 2021  Jacob Koziej <jacobkoziej@gmail.com>
  *
  * This program is free software: you can redistribute it and/or modify
@@ -25,13 +25,12 @@
 #include "wrap_calloc.h"
 
 
-static void test_jk_sll_init(void **state)
+static void test_calloc_fail(void **state)
 {
 	(void) state;
 	jk_sll_t *sll = NULL;
 
 
-	/* failed calloc() */
 	g_wrap_calloc_fail = 0;
 	sll = jk_sll_init();
 	assert_null(sll);
@@ -41,7 +40,7 @@ static void test_jk_sll_init(void **state)
 int main(void)
 {
 	static const struct CMUnitTest tests[] = {
-		cmocka_unit_test(test_jk_sll_init),
+		cmocka_unit_test(test_calloc_fail),
 	};
 
 
