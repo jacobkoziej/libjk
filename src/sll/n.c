@@ -1,5 +1,5 @@
 /*
- * sll.h -- singly-linked list
+ * sll/n.c
  * Copyright (C) 2021  Jacob Koziej <jacobkoziej@gmail.com>
  *
  * This program is free software: you can redistribute it and/or modify
@@ -16,25 +16,26 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-#ifndef LIBJK_SLL_H_
-#define LIBJK_SLL_H_
+#include <jk/sll.h>
+#include "sll.h"
 
-#ifdef __cplusplus
-extern "C" {
-#endif
-
-
-typedef struct jk_sll_s jk_sll_t;
+#include <errno.h>
+#include <stddef.h>
 
 
-int       jk_sll_append(jk_sll_t *list, void *data);
-void      jk_sll_free(jk_sll_t *list, void (*free_data) (void *ptr));
-jk_sll_t *jk_sll_init(void);
-void     *jk_sll_n(jk_sll_t *list, int n);
+void *jk_sll_n(jk_sll_t *list, int n)
+{
+	if (!list || n < 0 || n > list->nodes - 1) {
+		errno = EINVAL;
+		return NULL;
+	}
+
+	if (!list->head) return NULL;
 
 
-#ifdef __cplusplus
+	jk_sll_node_t *tmp = list->head;
+	while (n--) tmp = tmp->next;
+
+
+	return tmp->data;
 }
-#endif
-
-#endif /* LIBJK_SLL_H_ */
