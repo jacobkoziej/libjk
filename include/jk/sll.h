@@ -27,10 +27,10 @@ extern "C" {
 typedef struct jk_sll_s jk_sll_t;
 
 
-int       jk_sll_append(jk_sll_t *list, void *data);
-void      jk_sll_free(jk_sll_t *list, void (*free_data) (void *ptr));
+int       jk_sll_append(jk_sll_t *sll, void *data);
+void      jk_sll_free(jk_sll_t *sll, void (*free_data) (void *ptr));
 jk_sll_t *jk_sll_init(void);
-void     *jk_sll_n(jk_sll_t *list, int n);
+void     *jk_sll_n(jk_sll_t *sll, int n);
 
 
 #ifdef __cplusplus

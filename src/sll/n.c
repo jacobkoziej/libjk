@@ -22,12 +22,12 @@
 #include <stddef.h>
 
 
-void *jk_sll_n(jk_sll_t *list, int n)
+void *jk_sll_n(jk_sll_t *sll, int n)
 {
-	if (!list->head || n < 0 || n > list->nodes - 1) return NULL;
+	if (!sll->head || n < 0 || n > sll->nodes - 1) return NULL;
 
 
-	jk_sll_node_t *tmp = list->head;
+	jk_sll_node_t *tmp = sll->head;
 	while (n--) tmp = tmp->next;
 
 

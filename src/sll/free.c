@@ -22,19 +22,19 @@
 #include <stdlib.h>
 
 
-void jk_sll_free(jk_sll_t *list, void (*free_data) (void *ptr))
+void jk_sll_free(jk_sll_t *sll, void (*free_data) (void *ptr))
 {
-	if (!list) return;
+	if (!sll) return;
 
 	jk_sll_node_t *tmp;
 
 
-	while (list->head) {
-		tmp = list->head;
+	while (sll->head) {
+		tmp = sll->head;
 		if (free_data) free_data(tmp->data);
-		list->head = tmp->next;
+		sll->head = tmp->next;
 		free(tmp);
 	}
 
-	free(list);
+	free(sll);
 }

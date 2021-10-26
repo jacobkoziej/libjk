@@ -25,9 +25,9 @@
 
 jk_sll_t *jk_sll_init(void)
 {
-	jk_sll_t *tmp = calloc(1, sizeof(jk_sll_t));
-	if (!tmp) return NULL;
+	jk_sll_t *sll = calloc(1, sizeof(jk_sll_t));
+	if (!sll) return NULL;
 
 
-	return tmp;
+	return sll;
 }

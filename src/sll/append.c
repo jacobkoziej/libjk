@@ -23,7 +23,7 @@
 #include <stdlib.h>
 
 
-int jk_sll_append(jk_sll_t *list, void *data)
+int jk_sll_append(jk_sll_t *sll, void *data)
 {
 	jk_sll_node_t *n = malloc(sizeof(jk_sll_node_t));
 	if (!n) return -1;
@@ -31,19 +31,19 @@ int jk_sll_append(jk_sll_t *list, void *data)
 
 	n->data = data;
 
-	if (!list->head) {
+	if (!sll->head) {
 		n->next = NULL;
 
-		list->head = n;
-		list->tail = n;
+		sll->head = n;
+		sll->tail = n;
 
 
-		return ++list->nodes;
+		return ++sll->nodes;
 	}
 
-	n->next = list->head;
-	list->head = n;
+	n->next = sll->head;
+	sll->head = n;
 
 
-	return ++list->nodes;
+	return ++sll->nodes;
 }
