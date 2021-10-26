@@ -19,19 +19,12 @@
 #include <jk/sll.h>
 #include "sll.h"
 
-#include <errno.h>
 #include <stddef.h>
 #include <stdlib.h>
 
 
 int jk_sll_append(jk_sll_t *list, void *data)
 {
-	if (!list || !data) {
-		errno = EINVAL;
-		return -1;
-	}
-
-
 	jk_sll_node_t *n = malloc(sizeof(jk_sll_node_t));
 	if (!n) return -1;
 

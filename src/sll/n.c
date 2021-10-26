@@ -19,18 +19,12 @@
 #include <jk/sll.h>
 #include "sll.h"
 
-#include <errno.h>
 #include <stddef.h>
 
 
 void *jk_sll_n(jk_sll_t *list, int n)
 {
-	if (!list || n < 0 || n > list->nodes - 1) {
-		errno = EINVAL;
-		return NULL;
-	}
-
-	if (!list->head) return NULL;
+	if (!list->head || n < 0 || n > list->nodes - 1) return NULL;
 
 
 	jk_sll_node_t *tmp = list->head;
