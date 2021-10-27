@@ -19,21 +19,18 @@
 #include <jk/sll.h>
 #include "sll.h"
 
-#include <stddef.h>
 #include <stdlib.h>
 
 
 int jk_sll_append(jk_sll_t *sll, void *data)
 {
-	jk_sll_node_t *n = malloc(sizeof(jk_sll_node_t));
+	jk_sll_node_t *n = calloc(1, sizeof(jk_sll_node_t));
 	if (!n) return -1;
 
 
 	n->data = data;
 
 	if (!sll->head) {
-		n->next = NULL;
-
 		sll->head = n;
 		sll->tail = n;
 
@@ -41,8 +38,7 @@ int jk_sll_append(jk_sll_t *sll, void *data)
 		return ++sll->nodes;
 	}
 
-	n->next = sll->head;
-	sll->head = n;
+	sll->tail = sll->tail->next = n;
 
 
 	return ++sll->nodes;
