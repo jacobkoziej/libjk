@@ -32,7 +32,7 @@ typedef struct jk_sll_node_s {
 typedef struct jk_sll_s {
 	jk_sll_node_t *head;
 	jk_sll_node_t *tail;
-	int nodes;
+	size_t nodes;
 } jk_sll_t;
 
 

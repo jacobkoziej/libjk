@@ -22,9 +22,9 @@
 #include <stddef.h>
 
 
-void *jk_sll_n(jk_sll_t *sll, int n)
+void *jk_sll_n(jk_sll_t *sll, size_t n)
 {
-	if (!sll->head || n < 0 || n > sll->nodes - 1) return NULL;
+	if (!sll->nodes || n > sll->nodes - 1) return NULL;
 
 
 	jk_sll_node_t *tmp = sll->head;

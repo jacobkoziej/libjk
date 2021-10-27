@@ -19,13 +19,14 @@
 #include <jk/sll.h>
 #include "sll.h"
 
+#include <stddef.h>
 #include <stdlib.h>
 
 
-int jk_sll_append(jk_sll_t *sll, void *data)
+size_t jk_sll_append(jk_sll_t *sll, void *data)
 {
 	jk_sll_node_t *n = calloc(1, sizeof(jk_sll_node_t));
-	if (!n) return -1;
+	if (!n) return 0;
 
 
 	n->data = data;
