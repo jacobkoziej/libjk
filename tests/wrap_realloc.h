@@ -33,6 +33,7 @@ extern "C" {
 extern int g_wrap_realloc_fail;
 
 
+void *__real_realloc(void *ptr, size_t size);
 void *__wrap_realloc(void *ptr, size_t size);
 
 

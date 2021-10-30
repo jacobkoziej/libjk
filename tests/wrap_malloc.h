@@ -33,6 +33,7 @@ extern "C" {
 extern int g_wrap_malloc_fail;
 
 
+void *__real_malloc(size_t size);
 void *__wrap_malloc(size_t size);
 
 

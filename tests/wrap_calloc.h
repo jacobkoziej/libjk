@@ -33,6 +33,7 @@ extern "C" {
 extern int g_wrap_calloc_fail;
 
 
+void *__real_calloc(size_t nmemb, size_t size);
 void *__wrap_calloc(size_t nmemb, size_t size);
 
 

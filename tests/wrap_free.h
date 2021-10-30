@@ -24,6 +24,7 @@ extern "C" {
 #endif
 
 
+void __real_free(void *ptr);
 void __wrap_free(void *ptr);
 
 
