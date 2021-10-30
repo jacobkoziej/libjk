@@ -28,12 +28,10 @@
 static void test_calloc_fail(void **state)
 {
 	(void) state;
-	jk_sll_t *sll = NULL;
 
 
 	g_wrap_calloc_fail = 0;
-	sll = jk_sll_init();
-	assert_null(sll);
+	assert_null(jk_sll_init());
 }
 
 
