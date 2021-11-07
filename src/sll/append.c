@@ -25,21 +25,21 @@
 
 size_t jk_sll_append(jk_sll_t *sll, void *data)
 {
-	jk_sll_node_t *n = calloc(1, sizeof(jk_sll_node_t));
-	if (!n) return 0;
+	jk_sll_node_t *tmp = calloc(1, sizeof(jk_sll_node_t));
+	if (!tmp) return 0;
 
 
-	n->data = data;
+	tmp->data = data;
 
 	if (!sll->head) {
-		sll->head = n;
-		sll->tail = n;
+		sll->head = tmp;
+		sll->tail = tmp;
 
 
 		return ++sll->nodes;
 	}
 
-	sll->tail = sll->tail->next = n;
+	sll->tail = sll->tail->next = tmp;
 
 
 	return ++sll->nodes;

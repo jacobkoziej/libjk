@@ -25,14 +25,14 @@
 
 size_t jk_sll_prepend(jk_sll_t *sll, void *data)
 {
-	jk_sll_node_t *n = calloc(1, sizeof(jk_sll_node_t));
-	if (!n) return 0;
+	jk_sll_node_t *tmp = calloc(1, sizeof(jk_sll_node_t));
+	if (!tmp) return 0;
 
 
-	n->data = data;
-	n->next = sll->head;
+	tmp->data = data;
+	tmp->next = sll->head;
 
-	sll->head = n;
+	sll->head = tmp;
 
 
 	return ++sll->nodes;
