@@ -30,8 +30,13 @@ size_t jk_sll_prepend(jk_sll_t *sll, void *data)
 
 
 	tmp->data = data;
-	tmp->next = sll->head;
 
+	if (!sll->head) {
+		sll->head = sll->tail = tmp;
+		return ++sll->nodes;
+	}
+
+	tmp->next = sll->head;
 	sll->head = tmp;
 
 
