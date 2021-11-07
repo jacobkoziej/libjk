@@ -1,5 +1,5 @@
 /*
- * sll.h -- singly-linked list
+ * sll/insert.c
  * Copyright (C) 2021  Jacob Koziej <jacobkoziej@gmail.com>
  *
  * This program is free software: you can redistribute it and/or modify
@@ -16,31 +16,43 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-#ifndef LIBJK_SLL_H_
-#define LIBJK_SLL_H_
-
-#ifdef __cplusplus
-extern "C" {
-#endif
+#include <jk/sll.h>
+#include "sll.h"
 
 #include <stddef.h>
+#include <stdlib.h>
 
 
-typedef struct jk_sll_s jk_sll_t;
+size_t jk_sll_insert(jk_sll_t *sll, void *data, size_t n)
+{
+	jk_sll_node_t *tmp = calloc(1, sizeof(jk_sll_node_t));
+	if (!tmp) return 0;
 
 
-size_t    jk_sll_append(jk_sll_t *sll, void *data);
-void     *jk_sll_del(jk_sll_t *sll, size_t n);
-void      jk_sll_free(jk_sll_t *sll, void (*free_data) (void *ptr));
-void     *jk_sll_get(jk_sll_t *sll, size_t n);
-jk_sll_t *jk_sll_init(void);
-size_t    jk_sll_insert(jk_sll_t *sll, void *data, size_t n);
-size_t    jk_sll_prepend(jk_sll_t *sll, void *data);
-size_t    jk_sll_size(jk_sll_t *sll);
+	tmp->data = data;
+
+	if (!sll->nodes) {
+		sll->head = sll->tail = tmp;
+		return ++sll->nodes;
+	}
+
+	if (!n) {
+		tmp->next = sll->head;
+		sll->head = tmp;
+		return ++sll->nodes;
+	}
+
+	if (n >= sll->nodes - 1) {
+		sll->tail = sll->tail->next = tmp;
+		return ++sll->nodes;
+	}
+
+	jk_sll_node_t *tracer = sll->head;
+	--n;  // we want to stop right before the insertion point
+	while (n--) tracer = tracer->next;
+	tmp->next = tracer->next;
+	tracer->next = tmp;
 
 
-#ifdef __cplusplus
+	return ++sll->nodes;
 }
-#endif
-
-#endif /* LIBJK_SLL_H_ */
