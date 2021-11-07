@@ -1,5 +1,5 @@
 /*
- * sll/n.c
+ * sll/get.c
  * Copyright (C) 2021  Jacob Koziej <jacobkoziej@gmail.com>
  *
  * This program is free software: you can redistribute it and/or modify
@@ -22,7 +22,7 @@
 #include <stddef.h>
 
 
-void *jk_sll_n(jk_sll_t *sll, size_t n)
+void *jk_sll_get(jk_sll_t *sll, size_t n)
 {
 	if (!sll->nodes || n > sll->nodes - 1) return NULL;
 
