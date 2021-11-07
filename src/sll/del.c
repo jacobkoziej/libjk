@@ -1,5 +1,5 @@
 /*
- * sll.h -- singly-linked list
+ * sll/del.c
  * Copyright (C) 2021  Jacob Koziej <jacobkoziej@gmail.com>
  *
  * This program is free software: you can redistribute it and/or modify
@@ -16,29 +16,46 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-#ifndef LIBJK_SLL_H_
-#define LIBJK_SLL_H_
-
-#ifdef __cplusplus
-extern "C" {
-#endif
+#include <jk/sll.h>
+#include "sll.h"
 
 #include <stddef.h>
+#include <stdlib.h>
 
 
-typedef struct jk_sll_s jk_sll_t;
+void *jk_sll_del(jk_sll_t *sll, size_t n)
+{
+	if (!sll->nodes || n > sll->nodes - 1) return NULL;
+
+	jk_sll_node_t *prv, *tmp = sll->head;
+	void *data;
 
 
-size_t    jk_sll_append(jk_sll_t *sll, void *data);
-void     *jk_sll_del(jk_sll_t *sll, size_t n);
-void      jk_sll_free(jk_sll_t *sll, void (*free_data) (void *ptr));
-void     *jk_sll_get(jk_sll_t *sll, size_t n);
-jk_sll_t *jk_sll_init(void);
-size_t    jk_sll_prepend(jk_sll_t *sll, void *data);
+	if (!n) {
+		// special case where
+		// we remove the head
+		sll->head = tmp->next;
+	} else {
+		while (n-- && tmp->next) {
+			prv = tmp;
+			tmp = tmp->next;
+		}
+		prv->next = tmp->next;
+
+		// we don't want a dangling tail
+		// if we're removing the last node
+		if (tmp == sll->tail) sll->tail = prv;
+	}
+
+	data = tmp->data;
+	free(tmp);
+
+	// when there are <= 1 nodes, head and tail point to the same
+	// thing: either head or nullptr
+	if (--sll->nodes <= 1) {
+		sll->tail = sll->head;
+	}
 
 
-#ifdef __cplusplus
+	return data;
 }
-#endif
-
-#endif /* LIBJK_SLL_H_ */
