@@ -21,6 +21,7 @@ libjk_sources = files(
         'sll/get.c',
         'sll/init.c',
         'sll/prepend.c',
+        'sll/size.c',
 )
 
 
