@@ -32,10 +32,7 @@ size_t jk_sll_append(jk_sll_t *sll, void *data)
 	tmp->data = data;
 
 	if (!sll->head) {
-		sll->head = tmp;
-		sll->tail = tmp;
-
-
+		sll->head = sll->tail = tmp;
 		return ++sll->nodes;
 	}
 
