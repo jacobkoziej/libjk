@@ -22,7 +22,7 @@
 #include <stddef.h>
 
 
-size_t jk_sll_size(jk_sll_t *sll)
+size_t jk_sll_size(const jk_sll_t *sll)
 {
 	return sll->nodes;
 }

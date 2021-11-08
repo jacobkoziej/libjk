@@ -22,7 +22,7 @@
 #include <stddef.h>
 
 
-void *jk_sll_get(jk_sll_t *sll, size_t n)
+void *jk_sll_get(const jk_sll_t *sll, size_t n)
 {
 	if (!sll->nodes || n > sll->nodes - 1) return NULL;
 
