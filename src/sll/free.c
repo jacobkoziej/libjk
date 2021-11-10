@@ -22,7 +22,7 @@
 #include <stdlib.h>
 
 
-void jk_sll_free(jk_sll_t *sll, void (*free_data) (void *ptr))
+void jk_sll_free(jk_sll_t *restrict sll, void (*free_data) (void *ptr))
 {
 	if (!sll) return;
 

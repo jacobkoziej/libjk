@@ -29,14 +29,14 @@ extern "C" {
 typedef struct jk_sll_s jk_sll_t;
 
 
-size_t    jk_sll_append(jk_sll_t *sll, void *data);
-void     *jk_sll_del(jk_sll_t *sll, size_t n);
-void      jk_sll_free(jk_sll_t *sll, void (*free_data) (void *ptr));
-void     *jk_sll_get(const jk_sll_t *sll, size_t n);
+size_t    jk_sll_append(jk_sll_t *restrict sll, void *data);
+void     *jk_sll_del(jk_sll_t *restrict sll, size_t n);
+void      jk_sll_free(jk_sll_t *restrict sll, void (*free_data) (void *ptr));
+void     *jk_sll_get(const jk_sll_t *restrict sll, size_t n);
 jk_sll_t *jk_sll_init(void);
-size_t    jk_sll_insert(jk_sll_t *sll, void *data, size_t n);
-size_t    jk_sll_prepend(jk_sll_t *sll, void *data);
-size_t    jk_sll_size(const jk_sll_t *sll);
+size_t    jk_sll_insert(jk_sll_t *restrict sll, void *data, size_t n);
+size_t    jk_sll_prepend(jk_sll_t *restrict sll, void *data);
+size_t    jk_sll_size(const jk_sll_t *restrict sll);
 
 
 #ifdef __cplusplus
