@@ -29,11 +29,19 @@ void jk_sll_free(jk_sll_t *restrict sll, void (*free_data) (void *ptr))
 	jk_sll_node_t *tmp;
 
 
-	while (sll->head) {
-		tmp = sll->head;
-		if (free_data) free_data(tmp->data);
-		sll->head = tmp->next;
-		free(tmp);
+	if (free_data) {
+		while (sll->head) {
+			tmp = sll->head;
+			free_data(tmp->data);
+			sll->head = tmp->next;
+			free(tmp);
+		}
+	} else {
+		while (sll->head) {
+			tmp = sll->head;
+			sll->head = tmp->next;
+			free(tmp);
+		}
 	}
 
 	free(sll);
