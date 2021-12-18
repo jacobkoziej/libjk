@@ -17,7 +17,6 @@
  */
 
 #include <jk/sll.h>
-#include "sll.h"
 
 #include <stddef.h>
 

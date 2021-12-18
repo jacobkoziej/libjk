@@ -26,7 +26,16 @@ extern "C" {
 #include <stddef.h>
 
 
-typedef struct jk_sll_s jk_sll_t;
+typedef struct jk_sll_node_s {
+	void *data;
+	struct jk_sll_node_s *next;
+} jk_sll_node_t;
+
+typedef struct jk_sll_s {
+	jk_sll_node_t *head;
+	jk_sll_node_t *tail;
+	size_t nodes;
+} jk_sll_t;
 
 
 size_t    jk_sll_append(jk_sll_t *restrict sll, void *data);
