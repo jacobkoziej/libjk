@@ -15,3 +15,4 @@ project(
 )
 
 subdir('include')
+subdir('src')
