@@ -5,7 +5,7 @@
 
 ## Copyright & Licensing
 
-Copyright (C) 2021  Jacob Koziej [`<jacobkoziej@gmail.com>`]
+Copyright (C) 2021--2023  Jacob Koziej [`<jacobkoziej@gmail.com>`]
 
 Distributed under the [GPLv3] or later.
 
