@@ -11,4 +11,5 @@ project(
                 'c_std=c17',
                 'warning_level=3',
         ],
+        meson_version : '>=1.0.0',
 )
