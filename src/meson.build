@@ -9,6 +9,7 @@ libjk_sources = files(
 
 library(
         'jk',
+        c_args              : '-DLIBJK_FRIEND',
         include_directories : libjk_incdir,
         sources             : libjk_sources,
 )
