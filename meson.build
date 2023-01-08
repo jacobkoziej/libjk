@@ -12,6 +12,6 @@ project(
                 'warning_level=3',
                 'werror=true',
                 # compiler options
-                'c_std=c18',
+                'c_std=c17',
         ],
 )
