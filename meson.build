@@ -13,3 +13,5 @@ project(
         ],
         meson_version : '>=1.0.0',
 )
+
+subdir('include')
