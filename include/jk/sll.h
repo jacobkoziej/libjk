@@ -28,4 +28,7 @@ typedef struct jk_sll_s jk_sll_t;
 #endif  /* LIBJK_FRIEND */
 
 
+jk_sll_t *jk_sll_alloc(size_t val_size);
+
+
 #endif  /* LIBJK_SLL_H */
