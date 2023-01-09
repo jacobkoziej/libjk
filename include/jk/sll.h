@@ -8,4 +8,24 @@
 #define LIBJK_SLL_H
 
 
+#include <stddef.h>
+
+
+#ifdef LIBJK_FRIEND
+typedef struct jk_sll_node_s {
+	struct jk_sll_node_s *next;
+	char                  val[];
+} jk_sll_node_t;
+
+typedef struct jk_sll_s {
+	jk_sll_node_t *head;
+	jk_sll_node_t *tail;
+	size_t         val_size;
+	size_t         node_count;
+} jk_sll_t;
+#else
+typedef struct jk_sll_s jk_sll_t;
+#endif  /* LIBJK_FRIEND */
+
+
 #endif  /* LIBJK_SLL_H */
