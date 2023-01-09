@@ -29,7 +29,7 @@ typedef struct jk_sll_s jk_sll_t;
 
 
 jk_sll_t *jk_sll_alloc(size_t val_size);
-void      jk_sll_free(jk_sll_t *sll);
+void      jk_sll_free(jk_sll_t *sll, void (*free_val) (void *ptr));
 
 
 #endif  /* LIBJK_SLL_H */

@@ -22,14 +22,23 @@ jk_sll_t *jk_sll_alloc(size_t val_size)
 	return sll;
 }
 
-void jk_sll_free(jk_sll_t *sll)
+void jk_sll_free(jk_sll_t *sll, void (*free_val) (void *ptr))
 {
 	if (!sll) return;
 
-	while (sll->head) {
-		jk_sll_node_t *tmp = sll->head;
-		sll->head = tmp->next;
-		free(tmp);
+	if (free_val) {
+		while (sll->head) {
+			jk_sll_node_t *tmp = sll->head;
+			sll->head = tmp->next;
+			free_val(tmp->val);
+			free(tmp);
+		}
+	} else {
+		while (sll->head) {
+			jk_sll_node_t *tmp = sll->head;
+			sll->head = tmp->next;
+			free(tmp);
+		}
 	}
 
 	free(sll);
